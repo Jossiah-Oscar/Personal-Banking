@@ -17,15 +17,11 @@ class _CardListState extends State<CardList> {
 
   final List<CardListTest> cardListTest = <CardListTest>[];
   @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   accounts.forEach((element) {
-  //     cardListTest.add(
-  //       new CardListTest(element, name),
-  //     );
-  //   });
-  // }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<AccountsModel>(context, listen: false).getCards();
+  }
 
   @override
   Widget build(BuildContext context) {
