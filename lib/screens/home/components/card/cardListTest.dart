@@ -1,10 +1,11 @@
 import 'package:bank_ui/constants/colors.dart';
 import 'package:bank_ui/screens/card/cardview.dart';
+import 'package:bank_ui/screens/home/components/card/cardview.dart';
 import 'package:flutter/material.dart';
 
 class CardListTest extends StatefulWidget {
-  int testAccount;
-  String testName;
+  int testAccount = 0;
+  String testName = "";
   CardListTest(int account, String name) {
     this.testAccount = account;
     this.testName = name;

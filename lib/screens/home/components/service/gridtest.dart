@@ -2,8 +2,8 @@ import 'package:bank_ui/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class GridTest extends StatefulWidget {
-  String testText;
-  Icon testIcon;
+  String testText = "";
+  Icon testIcon = new Icon(Icons.send_sharp);
   GridTest(String test, Icon icon) {
     this.testText = test;
     this.testIcon = icon;
@@ -24,7 +24,7 @@ class _GridTestState extends State<GridTest> {
             Positioned(
               left: 40,
               child: IconButton(
-                icon: widget.testIcon, // color: button,
+                icon: widget.testIcon, onPressed: () {  }, // color: button,
               ),
             ),
             Align(

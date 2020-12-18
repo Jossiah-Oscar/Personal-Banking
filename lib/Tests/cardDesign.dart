@@ -16,7 +16,7 @@ class CardView extends StatelessWidget {
               width: 380,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.red[500],
+                  color: Colors.red,
                 ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),

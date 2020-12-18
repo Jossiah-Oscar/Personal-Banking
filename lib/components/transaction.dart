@@ -1,7 +1,7 @@
-class Transaction {
-  String company;
-  String text;
-  int colorCodes;
+// class Transaction {
+//   String company;
+//   String text;
+//   int colorCodes;
 
-  Transaction({this.company, this.text, this.colorCodes});
-}
+//   Transaction({this.company, this.text, this.colorCodes});
+// }

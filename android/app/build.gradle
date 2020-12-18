@@ -44,6 +44,7 @@ android {
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -63,3 +64,14 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:26.1.0')
 }
+
+
+configurations.all {
+    resolutionStrategy {
+        // TODO: Line below required for Detox since version 12.5
+        //   It should removed as soon as the project compiles without it
+        force 'androidx.annotation:annotation:1.0.0'
+    }
+}
+
+apply plugin: 'com.google.gms.google-services'

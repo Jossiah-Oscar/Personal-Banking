@@ -1,12 +1,8 @@
-import 'package:bank_ui/Tests/cardlist.dart';
-import 'package:bank_ui/Tests/testService.dart';
+import 'package:bank_ui/screens/home/components/card/addCard.dart';
+import 'package:bank_ui/screens/home/components/card/cardlist.dart';
+import 'package:bank_ui/screens/home/components/service/testService.dart';
 import 'package:bank_ui/components/appbar.dart';
 import 'package:bank_ui/constants/colors.dart';
-import 'package:bank_ui/screens/card/addCard.dart';
-import 'package:bank_ui/screens/home/components/cardcarousel.dart';
-import 'package:bank_ui/screens/home/components/list.dart';
-import 'package:bank_ui/screens/home/components/service.dart';
-import 'package:bank_ui/screens/sidebar/sidebar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

@@ -1,5 +1,6 @@
+import 'package:bank_ui/models/accountsModel.dart';
 import 'package:flutter/material.dart';
-import 'package:bank_ui/Tests/cardlist.dart';
+import 'package:provider/provider.dart';
 
 class AddNewCard extends StatefulWidget {
   @override
@@ -7,15 +8,9 @@ class AddNewCard extends StatefulWidget {
 }
 
 class _AddNewCardState extends State<AddNewCard> {
-  
-  TextEditingController accountController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
 
-  void addCard(){
-    setState(() {
-      
-    });
-  }
+  final accountNumberCon = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +29,7 @@ class _AddNewCardState extends State<AddNewCard> {
             Padding(
               padding: EdgeInsets.all(20),
               child: TextField(
+                controller: accountNumberCon,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Account Number',
@@ -42,7 +38,10 @@ class _AddNewCardState extends State<AddNewCard> {
             ),
             RaisedButton(
               child: Text('Add'),
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<AccountsModel>(context, listen: false)
+                    .AddCard(int.parse(accountNumberCon.text));
+              },
             ),
           ],
         ),

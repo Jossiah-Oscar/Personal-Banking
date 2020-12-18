@@ -38,7 +38,8 @@ class _ServiceTabState extends State<ServiceTab> {
                       icon: Icon(
                         Icons.send_sharp,
                         size: 20,
-                      ), // color: button,
+                      ),
+                      onPressed: () {}, // color: button,
                     ),
                   ),
                   Positioned(
