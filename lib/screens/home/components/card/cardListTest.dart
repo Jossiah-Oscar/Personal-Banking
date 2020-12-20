@@ -1,5 +1,4 @@
 import 'package:bank_ui/constants/colors.dart';
-import 'package:bank_ui/screens/card/cardview.dart';
 import 'package:bank_ui/screens/home/components/card/cardview.dart';
 import 'package:flutter/material.dart';
 

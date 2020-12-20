@@ -15,7 +15,7 @@ class AccountsModel extends ChangeNotifier {
         accounts.add(
           new CardModel(
             int.parse(
-              element["card_number"],
+              element["account_name"],
             ),
           ),
         );
@@ -26,7 +26,7 @@ class AccountsModel extends ChangeNotifier {
     });
   }
 
-  void AddCard(int accountNumber) {
+  void addCard(int accountNumber) {
     accounts.add(new CardModel(accountNumber));
 
     notifyListeners();

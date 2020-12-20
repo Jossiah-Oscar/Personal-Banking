@@ -40,7 +40,7 @@ class _AddNewCardState extends State<AddNewCard> {
               child: Text('Add'),
               onPressed: () {
                 Provider.of<AccountsModel>(context, listen: false)
-                    .AddCard(int.parse(accountNumberCon.text));
+                    .addCard(int.parse(accountNumberCon.text));
               },
             ),
           ],

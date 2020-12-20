@@ -18,7 +18,6 @@ class _CardListState extends State<CardList> {
   final List<CardListTest> cardListTest = <CardListTest>[];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Provider.of<AccountsModel>(context, listen: false).getCards();
   }
