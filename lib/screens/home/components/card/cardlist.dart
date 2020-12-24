@@ -9,11 +9,8 @@ class CardList extends StatefulWidget {
 }
 
 class _CardListState extends State<CardList> {
-  // final List<int> accounts = <int>[
-  //   1234566578946958,
-  // ];
 
-  String name = "Rowland Benard Martin";
+
 
   final List<CardListTest> cardListTest = <CardListTest>[];
   @override
