@@ -47,12 +47,15 @@ class AccountsModel extends ChangeNotifier {
     http.post(_url, body: {
       "name": name.toString(),
       "number": number.toString(),
+      
     });
 
     // test.jsonEncode(name,number);
 
     notifyListeners();
   }
+
+ 
 }
 
 class CardModel {

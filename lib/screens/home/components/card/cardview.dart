@@ -108,17 +108,7 @@ class CardView extends StatelessWidget {
                 ],
               ),
             ),
-            // Container(
-            //   height: 220,
-            //   width: 400,
-            //   child: Hero(
-            //     tag: 'world',
-            //     child: Container(
-            //       color: Colors.white,
-            //       child: Image.asset("assets/world.png"),
-            //     ),
-            //   ),
-            // ),
+            
             SizedBox(height: 10),
 
             //Balance button and Amount
