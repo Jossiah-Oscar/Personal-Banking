@@ -1,5 +1,6 @@
 import 'package:bank_ui/screens/home/components/card/addCard.dart';
 import 'package:bank_ui/screens/home/components/card/cardlist.dart';
+import 'package:bank_ui/screens/home/components/service/services.dart';
 import 'package:bank_ui/screens/home/components/service/testService.dart';
 import 'package:bank_ui/components/appbar.dart';
 import 'package:bank_ui/constants/colors.dart';
@@ -36,7 +37,8 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 //Service Tab
-                TestServices()
+                // TestServices()
+                Services(),
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:bank_ui/models/accountsModel.dart';
 import 'package:bank_ui/screens/home/home.dart';
+import 'package:bank_ui/screens/signUp/logIn.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,10 +22,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: HomePage(),
-          // home: FirebaseRealtimeDemoScreen(),
-          // home: Wrapper(),
-          // home: TestStackBackground(),
+          home: LogIn()
+          // HomePage(),
+         
         ));
   }
 }

@@ -17,6 +17,13 @@ class _AddNewCardState extends State<AddNewCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Center(
+            child: Text(
+          "Add Card",
+          style: TextStyle(),
+        )),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -189,7 +196,7 @@ class _AddNewCardState extends State<AddNewCard> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 30),
                 child: ButtonTheme(
                   minWidth: 200,
                   height: 50,
@@ -204,9 +211,7 @@ class _AddNewCardState extends State<AddNewCard> {
                               "Account Number",
                             ),
                             content: Text("Please enter your Account Number"),
-                            actions: [
-                              
-                            ],
+                            actions: [],
                           ),
                         );
                       } else if (cardNumberController.text.isEmpty) {
