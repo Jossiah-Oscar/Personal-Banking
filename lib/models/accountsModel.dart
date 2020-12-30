@@ -1,22 +1,23 @@
 import 'dart:convert';
+
 // import 'dart:html';
 
+import 'package:bank_ui/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AccountsModel extends ChangeNotifier {
   final List<CardModel> accounts = [];
 
-  String _url = "http://192.168.8.100/personalbanking/index.php";
-
 //Display cards from the database
-  void getCards() {
-    http.get(_url).then((value) {
-      List accountsList = jsonDecode(value.body) as List;
+  Future getCards() async {
+    String _url = "http://192.168.8.100/personalbanking/index.php";
+    await http.get(_url).then((value) {
+      List<dynamic> accountsList = jsonDecode(value.body) as List;
       accountsList.forEach((element) {
         accounts.add(
           new CardModel(
-            int.parse(
+            int.tryParse(
               element["account_number"],
             ),
           ),
@@ -29,9 +30,9 @@ class AccountsModel extends ChangeNotifier {
   }
 
 // Add cards to the database
-  void addCard(accountNumber, cardNumber) {
-    _url = "http://192.168.8.100/personalbanking/addaccount.php";
-    http.post(_url, body: {
+  Future addCard(accountNumber, cardNumber) async {
+    String _url = "http://192.168.8.100/personalbanking/addaccount.php";
+    await http.post(_url, body: {
       // "accountName": accountName,
       "accountNumber": accountNumber.toString(),
       "cardNumber": cardNumber.toString(),
@@ -40,22 +41,65 @@ class AccountsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  //Test addInfo to Database
-  void addInfo(name, number) {
-    _url = "http://192.168.8.100/personalbanking/adddata.php";
-
-    http.post(_url, body: {
-      "name": name.toString(),
-      "number": number.toString(),
-      
+  Future logIn(email, password, context) async {
+    String _url = "http://192.168.8.100/personalbanking/login.php";
+    var response = await http.post(_url, body: {
+      "email": email.toString(),
+      "password": password.toString(),
     });
 
-    // test.jsonEncode(name,number);
+    var message = jsonDecode(response.body);
+
+    if (message == 'Login Matched') {
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          pageBuilder: (
+            context,
+            animation,
+            secondaryAnimation,
+          ) =>
+              HomePage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return child;
+          },
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text(message),
+            actions: <Widget>[
+              FlatButton(
+                child: new Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+    print(message);
 
     notifyListeners();
   }
 
- 
+  // //Test addInfo to Database
+  // void addInfo(name, number) {
+  //   _url = "http://192.168.8.100/personalbanking/adddata.php";
+
+  //   http.post(_url, body: {
+  //     "name": name.toString(),
+  //     "number": number.toString(),
+  //   });
+
+  //   // test.jsonEncode(name,number);
+
+  //   notifyListeners();
+  // }
 }
 
 class CardModel {
@@ -68,7 +112,7 @@ class CardModel {
   CardModel(this.accountNumber);
 }
 
-//POST Request for Accounts
+// //POST Request for Accounts
 class AccountModel {
   int accountNumber;
   int cardNumber;
@@ -77,10 +121,9 @@ class AccountModel {
   AccountModel(this.accountName, this.accountNumber, this.cardNumber);
 }
 
-// //POST Request Test Model
-// class TestModel {
-//   final String name;
-//   final int number;
+class UserModel {
+  String email;
+  String password;
 
-//   TestModel(this.name, this.number);
-// }
+  UserModel(this.email, this.password);
+}

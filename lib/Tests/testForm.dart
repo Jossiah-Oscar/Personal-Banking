@@ -23,13 +23,13 @@ class _FormDataState extends State<FormData> {
             TextField(
               controller: numberController,
             ),
-            RaisedButton(
-              child: Text("Submit"),
-              onPressed: () {
-                Provider.of<AccountsModel>(context, listen: false)
-                    .addInfo(nameController.text, int.parse(numberController.text));
-              },
-            )
+            // RaisedButton(
+            //   child: Text("Submit"),
+            //   onPressed: () {
+            //     Provider.of<AccountsModel>(context, listen: false)
+            //         .addInfo(nameController.text, int.parse(numberController.text));
+            //   },
+            // )
           ],
         ),
       ),

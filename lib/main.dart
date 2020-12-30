@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => AccountsModel()),
+          
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -22,8 +23,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: LogIn()
-          // HomePage(),
+          home: HomePage(),
          
         ));
   }

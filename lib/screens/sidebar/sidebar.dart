@@ -1,4 +1,3 @@
-import 'package:bank_ui/Tests/stackDesign.dart';
 import 'package:flutter/material.dart';
 
 class SideBar extends StatelessWidget {

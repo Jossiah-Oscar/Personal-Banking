@@ -1,8 +1,7 @@
+
 import 'package:bank_ui/screens/home/components/card/addCard.dart';
 import 'package:bank_ui/screens/home/components/card/cardlist.dart';
 import 'package:bank_ui/screens/home/components/service/services.dart';
-import 'package:bank_ui/screens/home/components/service/testService.dart';
-import 'package:bank_ui/components/appbar.dart';
 import 'package:bank_ui/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -16,24 +15,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: background,
-      body: Stack(
-        children: [
-          //Main Body
-          SafeArea(
+      backgroundColor: Colors.white,
+      appBar: AppBar(),
+      body: GestureDetector(
+        onTap: () {
+           FocusScope.of(context).requestFocus(new FocusNode());
+        },
+              child: SafeArea(
+          child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                //Custom AppBar
-                CustomAppBar(),
-
+            
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
+                // //Custom AppBar
 
                 //Bank Cards Carousel
                 CardList(),
                 SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
 
                 //Service Tab
@@ -42,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-        ],
+        ),
       ),
       bottomNavigationBar: Container(
         height: 50,
