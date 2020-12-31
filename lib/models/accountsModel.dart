@@ -17,9 +17,9 @@ class AccountsModel extends ChangeNotifier {
       accountsList.forEach((element) {
         accounts.add(
           new CardModel(
-            int.tryParse(
+            int.parse(
               element["account_number"],
-            ),
+            )
           ),
         );
       });
@@ -83,6 +83,8 @@ class AccountsModel extends ChangeNotifier {
       );
     }
     print(message);
+    print(password);
+    print(email);
 
     notifyListeners();
   }
