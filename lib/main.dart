@@ -1,10 +1,13 @@
 import 'package:bank_ui/models/accountsModel.dart';
 import 'package:bank_ui/screens/home/home.dart';
 import 'package:bank_ui/screens/signUp/logIn.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -15,7 +18,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => AccountsModel()),
-          
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -24,7 +26,6 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
           ),
           home: LogIn(),
-         
         ));
   }
 }

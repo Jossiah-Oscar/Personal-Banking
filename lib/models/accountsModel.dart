@@ -3,11 +3,14 @@ import 'dart:convert';
 // import 'dart:html';
 
 import 'package:bank_ui/screens/home/home.dart';
+import 'package:bank_ui/screens/signUp/signUp.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AccountsModel extends ChangeNotifier {
   final List<CardModel> accounts = [];
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
 //Display cards from the database
   Future getCards() async {
@@ -16,11 +19,9 @@ class AccountsModel extends ChangeNotifier {
       List<dynamic> accountsList = jsonDecode(value.body) as List;
       accountsList.forEach((element) {
         accounts.add(
-          new CardModel(
-            int.parse(
-              element["account_number"],
-            )
-          ),
+          new CardModel(int.tryParse(
+            element["account_number"],
+          )),
         );
       });
 
@@ -41,17 +42,13 @@ class AccountsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future logIn(email, password, context) async {
-    String _url = "http://192.168.8.100/personalbanking/login.php";
-    var response = await http.post(_url, body: {
-      "email": email.toString(),
-      "password": password.toString(),
-    });
+//Log in wiht Email and Password Firebase.
+  Future logIn(String email, String password, context) async {
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
 
-    var message = jsonDecode(response.body);
-
-    if (message == 'Login Matched') {
-      Navigator.of(context).push(
+      return Navigator.of(context).push(
         PageRouteBuilder(
           pageBuilder: (
             context,
@@ -64,28 +61,31 @@ class AccountsModel extends ChangeNotifier {
           },
         ),
       );
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text(message),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
+    } on FirebaseAuthException catch (e) {
+      // ignore: unrelated_type_equality_checks
+     
+      print(e);
     }
-    print(message);
-    print(password);
-    print(email);
+    // print(FirebaseAuthException);
+    notifyListeners();
+  }
 
+//Signup with Email and Password Firebase
+  Future signUp(String email, String password) async {
+    try {
+      await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return "Signed Up";
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        return "The password provided is too weak.";
+      } else if (e.code == 'email-already-in-use') {
+        return "The account already exists for that email.";
+      } else {
+        return "Something Went Wrong.";
+      }
+    } catch (e) {}
+    print(FirebaseAuthException);
     notifyListeners();
   }
 
@@ -112,20 +112,4 @@ class CardModel {
   // String get getName => name;
 
   CardModel(this.accountNumber);
-}
-
-// //POST Request for Accounts
-class AccountModel {
-  int accountNumber;
-  int cardNumber;
-  String accountName;
-
-  AccountModel(this.accountName, this.accountNumber, this.cardNumber);
-}
-
-class UserModel {
-  String email;
-  String password;
-
-  UserModel(this.email, this.password);
 }
