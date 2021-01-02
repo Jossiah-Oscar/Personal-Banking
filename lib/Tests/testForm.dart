@@ -1,6 +1,5 @@
 import 'package:bank_ui/models/accountsModel.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class FormData extends StatefulWidget {
   @override
