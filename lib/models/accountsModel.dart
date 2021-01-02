@@ -3,7 +3,6 @@ import 'dart:convert';
 // import 'dart:html';
 
 import 'package:bank_ui/screens/home/home.dart';
-import 'package:bank_ui/screens/signUp/signUp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -63,7 +62,7 @@ class AccountsModel extends ChangeNotifier {
       );
     } on FirebaseAuthException catch (e) {
       // ignore: unrelated_type_equality_checks
-     
+
       print(e);
     }
     // print(FirebaseAuthException);
