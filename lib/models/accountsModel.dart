@@ -10,6 +10,8 @@ import 'package:http/http.dart' as http;
 class AccountsModel extends ChangeNotifier {
   final List<CardModel> accounts = [];
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  bool isSwitched = false;
+  var textValue = 'Switch is OFF';
 
 //Display cards from the database
   Future getCards() async {
@@ -87,20 +89,6 @@ class AccountsModel extends ChangeNotifier {
     print(FirebaseAuthException);
     notifyListeners();
   }
-
-  // //Test addInfo to Database
-  // void addInfo(name, number) {
-  //   _url = "http://192.168.8.100/personalbanking/adddata.php";
-
-  //   http.post(_url, body: {
-  //     "name": name.toString(),
-  //     "number": number.toString(),
-  //   });
-
-  //   // test.jsonEncode(name,number);
-
-  //   notifyListeners();
-  // }
 }
 
 class CardModel {

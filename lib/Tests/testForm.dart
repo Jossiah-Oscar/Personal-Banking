@@ -1,4 +1,3 @@
-import 'package:bank_ui/models/accountsModel.dart';
 import 'package:flutter/material.dart';
 
 class FormData extends StatefulWidget {
