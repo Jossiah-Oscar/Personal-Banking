@@ -36,17 +36,7 @@ class _LogInState extends State<LogIn> {
                       top: 105,
                     ),
                     child: Text(
-                      "Welcome",
-                      style: TextStyle(fontSize: 45),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 40,
-                      right: 0,
-                    ),
-                    child: Text(
-                      "Back",
+                      "Welcome\nBack",
                       style: TextStyle(fontSize: 45),
                     ),
                   ),

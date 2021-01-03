@@ -29,17 +29,7 @@ class _SignUpState extends State<SignUp> {
                     top: 105,
                   ),
                   child: Text(
-                    "Create",
-                    style: TextStyle(fontSize: 45),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 0,
-                  ),
-                  child: Text(
-                    "Account",
+                    "Create\nAccount",
                     style: TextStyle(fontSize: 45),
                   ),
                 ),
