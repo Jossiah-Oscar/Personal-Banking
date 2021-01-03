@@ -51,7 +51,7 @@ class _ServicesTabsState extends State<ServicesTabs> {
             color: Colors.amberAccent,
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(10),
-              top: Radius.circular(15),
+              top: Radius.circular(10),
             ),
           ),
           child: Stack(

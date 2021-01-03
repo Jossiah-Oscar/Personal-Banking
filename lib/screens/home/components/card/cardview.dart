@@ -1,7 +1,5 @@
 import 'package:bank_ui/constants/colors.dart';
-import 'package:bank_ui/models/accountsModel.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CardView extends StatelessWidget {
   @override
@@ -45,8 +43,18 @@ class CardView extends StatelessWidget {
                       height: 200,
                       width: 360,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          color: backgroundDark),
+                        borderRadius: BorderRadius.circular(18),
+                        color: backgroundDark,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blue,
+                            blurRadius: 3.0,
+                            spreadRadius: 3.0,
+                            offset: Offset(
+                                2.0, 2.0), // shadow direction: bottom right
+                          )
+                        ],
+                      ),
                       child: Stack(
                         children: <Widget>[
                           Positioned(
@@ -180,7 +188,7 @@ class CardView extends StatelessWidget {
                   Container(
                     height: 130,
                     width: 100,
-                    color: Colors.pinkAccent,
+                    color: Colors.blueAccent,
                     child: Stack(
                       children: [
                         Positioned(
@@ -207,7 +215,7 @@ class CardView extends StatelessWidget {
                   Container(
                     height: 130,
                     width: 100,
-                    color: Colors.pinkAccent,
+                    color: Colors.blueAccent,
                     child: Stack(
                       children: [
                         Positioned(
@@ -234,7 +242,7 @@ class CardView extends StatelessWidget {
                   Container(
                     height: 130,
                     width: 100,
-                    color: Colors.pinkAccent,
+                    color: Colors.blueAccent,
                     child: Stack(
                       children: [
                         Positioned(

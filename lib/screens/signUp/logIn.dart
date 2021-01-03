@@ -1,4 +1,5 @@
 import 'package:bank_ui/models/accountsModel.dart';
+import 'package:bank_ui/screens/signUp/forgotPassword.dart';
 import 'package:bank_ui/screens/signUp/signUp.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -86,7 +87,13 @@ class _LogInState extends State<LogIn> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(),
-                          child: Text("Log In"),
+                          child: Text(
+                            "Log In",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
@@ -131,7 +138,23 @@ class _LogInState extends State<LogIn> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 180),
-                          child: Text("Forgot Password"),
+                          child: GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                              PageRouteBuilder(
+                                pageBuilder: (
+                                  context,
+                                  animation,
+                                  secondaryAnimation,
+                                ) =>
+                                    ForgotPassword(),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  return child;
+                                },
+                              ),
+                            ),
+                            child: Text("Forgot Password"),
+                          ),
                         ),
                       ],
                     ),

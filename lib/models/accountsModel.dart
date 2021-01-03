@@ -89,6 +89,10 @@ class AccountsModel extends ChangeNotifier {
     print(FirebaseAuthException);
     notifyListeners();
   }
+
+  Future sendpasswordresetEmail(String email) async {
+    await _firebaseAuth.sendPasswordResetEmail(email: email);
+  }
 }
 
 class CardModel {

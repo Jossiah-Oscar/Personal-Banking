@@ -1,4 +1,5 @@
 import 'package:bank_ui/models/accountsModel.dart';
+import 'package:bank_ui/screens/signUp/forgotPassword.dart';
 import 'package:bank_ui/screens/signUp/logIn.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

@@ -18,6 +18,8 @@ class _AddNewCardState extends State<AddNewCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
         title: Center(
             child: Text(
           "Add Card",
@@ -33,7 +35,10 @@ class _AddNewCardState extends State<AddNewCard> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    left: 20,
+                  ),
                   child: Container(
                     margin: EdgeInsets.only(right: 10),
                     height: 200,

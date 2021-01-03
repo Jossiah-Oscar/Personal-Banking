@@ -1,4 +1,3 @@
-
 import 'package:bank_ui/screens/home/components/card/addCard.dart';
 import 'package:bank_ui/screens/home/components/card/cardlist.dart';
 import 'package:bank_ui/screens/home/components/service/services.dart';
@@ -16,17 +15,20 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        actions: [],
+      ),
       body: GestureDetector(
         onTap: () {
-           FocusScope.of(context).requestFocus(new FocusNode());
+          FocusScope.of(context).requestFocus(new FocusNode());
         },
-              child: SafeArea(
+        child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-            
                 SizedBox(
                   height: 20,
                 ),
