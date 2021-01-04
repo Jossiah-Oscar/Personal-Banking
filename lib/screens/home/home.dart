@@ -29,20 +29,39 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
-                  height: 20,
+                Container(
+                  height: 400,
+                  color: Colors.lightBlue,
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 20,
+                          left: 20,
+                        ),
+                        child: Text("Good Morning"),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 60,
+                          left: 20,
+                        ),
+                        child: Text(
+                          "Rowland Benard Martin",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 180),
+                        child: CardList(),
+                      ),
+                    ],
+                  ),
                 ),
-                // //Custom AppBar
-
-                //Bank Cards Carousel
-                CardList(),
-                SizedBox(
-                  height: 10,
+                Padding(
+                  padding: const EdgeInsets.only(top: 0),
+                  child: Services(),
                 ),
-
-                //Service Tab
-                // TestServices()
-                Services(),
               ],
             ),
           ),
@@ -58,21 +77,27 @@ class _HomePageState extends State<HomePage> {
             Icon(Icons.card_membership_sharp),
             Icon(Icons.card_membership_sharp),
             GestureDetector(
-                onTap: () => Navigator.of(context).push(
-                      PageRouteBuilder(
-                        pageBuilder: (
-                          context,
-                          animation,
-                          secondaryAnimation,
-                        ) =>
-                            AddNewCard(),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          return child;
-                        },
-                      ),
-                    ),
-                child: Icon(Icons.add)),
+              onTap: () => Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (
+                    context,
+                    animation,
+                    secondaryAnimation,
+                  ) =>
+                      AddNewCard(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return child;
+                  },
+                ),
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.add,
+                ),
+                tooltip: "Add Card",
+              ),
+            ),
             Icon(Icons.card_membership_sharp),
             Icon(Icons.card_membership_sharp),
           ],

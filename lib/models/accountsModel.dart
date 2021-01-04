@@ -15,7 +15,7 @@ class AccountsModel extends ChangeNotifier {
 
 //Display cards from the database
   Future getCards() async {
-    String _url = "http://192.168.8.100/personalbanking/index.php";
+    String _url = "http://192.168.18.12/personalbanking/index.php";
     await http.get(_url).then((value) {
       List<dynamic> accountsList = jsonDecode(value.body) as List;
       accountsList.forEach((element) {

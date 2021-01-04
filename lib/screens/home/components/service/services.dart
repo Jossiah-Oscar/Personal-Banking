@@ -16,9 +16,9 @@ class _ServicesState extends State<Services> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.only(top: 0),
       child: Container(
-        height: 100,
+        height: 135,
         child: ListView.builder(
           padding: EdgeInsets.only(left: 10, right: 5),
           scrollDirection: Axis.horizontal,
@@ -40,41 +40,44 @@ class ServicesTabs extends StatefulWidget {
 class _ServicesTabsState extends State<ServicesTabs> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Container(
-          margin: EdgeInsets.only(right: 10),
-          height: 110,
-          width: 90,
-          decoration: BoxDecoration(
-            color: Colors.amberAccent,
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(10),
-              top: Radius.circular(10),
+    return Padding(
+      padding: const EdgeInsets.only(left: 5, top: 20, right: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            width: 100,
+            decoration: BoxDecoration(
+              color: Colors.blueAccent,
+              borderRadius: BorderRadius.all(
+                Radius.circular(8),
+              ),
+            ),
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 10,
+                  top: 30,
+                  child: Icon(
+                    Icons.language,
+                    size: 30,
+                  ),
+                ),
+                Positioned(
+                  top: 70,
+                  left: 10,
+                  child: Text(
+                    "Online \nPayments",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          child: Stack(
-            children: [
-              Positioned(
-                left: 26,
-                top: 20,
-                child: Icon(
-                  Icons.payment,
-                  size: 40,
-                ),
-              ),
-              Positioned(
-                  left: 18,
-                  top: 70,
-                  child: Text(
-                    "Transfer",
-                    style: TextStyle(fontSize: 15),
-                  ))
-            ],
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
