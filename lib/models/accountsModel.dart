@@ -10,8 +10,6 @@ import 'package:http/http.dart' as http;
 class AccountsModel extends ChangeNotifier {
   final List<CardModel> accounts = [];
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  bool isSwitched = false;
-  var textValue = 'Switch is OFF';
 
 //Display cards from the database
   Future getCards() async {
@@ -20,9 +18,12 @@ class AccountsModel extends ChangeNotifier {
       List<dynamic> accountsList = jsonDecode(value.body) as List;
       accountsList.forEach((element) {
         accounts.add(
-          new CardModel(int.tryParse(
-            element["account_number"],
-          )),
+          new CardModel(
+            int.tryParse(
+              element["account_number"],
+            ),
+            element["account_name"],
+          ),
         );
       });
 
@@ -97,10 +98,30 @@ class AccountsModel extends ChangeNotifier {
 
 class CardModel {
   int accountNumber;
-  // String name;
+  String accountName;
 
   int get getaccountNumber => accountNumber;
+  String get getaccountName => accountName;
   // String get getName => name;
 
-  CardModel(this.accountNumber);
+  CardModel(this.accountNumber, this.accountName);
+}
+
+class Accounts {
+  int accountNumber;
+  int cardNumber;
+  String accountName;
+  int balance;
+
+  Accounts(
+      {this.accountName, this.accountNumber, this.balance, this.cardNumber});
+
+  factory Accounts.fromJson(Map<String, dynamic> json) {
+    return Accounts(
+      accountNumber: json["account_number"],
+      accountName: json["account_name"],
+      cardNumber: json["card_number"],
+      balance: json["balance"],
+    );
+  }
 }

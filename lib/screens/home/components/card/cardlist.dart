@@ -28,7 +28,8 @@ class _CardListState extends State<CardList> {
             padding: EdgeInsets.only(left: 16, right: 6),
             itemCount: model.accounts.length,
             itemBuilder: (context, index) {
-              return CardListTest(model.accounts[index].accountNumber, "Hello");
+              return CardListTest(model.accounts[index].accountNumber,
+                  model.accounts[index].accountName);
               // Text(model.accounts[index].accountNumber.toString()) ;
             },
           );
@@ -39,11 +40,11 @@ class _CardListState extends State<CardList> {
 }
 
 class CardListTest extends StatefulWidget {
-  int testAccount = 0;
-  String testName = "";
+  int accountNumber;
+  String accountName;
   CardListTest(int account, String name) {
-    this.testAccount = account;
-    this.testName = name;
+    this.accountNumber = account;
+    this.accountName = name;
   }
   @override
   _CardListTestState createState() => _CardListTestState();
@@ -78,7 +79,7 @@ class _CardListTestState extends State<CardListTest> {
               left: 30,
               top: 90,
               child: Text(
-                widget.testAccount.toString(),
+                widget.accountNumber.toString(),
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
@@ -102,7 +103,7 @@ class _CardListTestState extends State<CardListTest> {
               left: 30,
               top: 165,
               child: Text(
-                widget.testName,
+                widget.accountName,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
