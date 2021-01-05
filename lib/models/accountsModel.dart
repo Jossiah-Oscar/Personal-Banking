@@ -16,6 +16,7 @@ class AccountsModel extends ChangeNotifier {
     String _url = "http://192.168.18.12/personalbanking/index.php";
     await http.get(_url).then((value) {
       List<dynamic> accountsList = jsonDecode(value.body) as List;
+      accounts.clear();
       accountsList.forEach(
         (element) {
           accounts.add(
@@ -36,13 +37,6 @@ class AccountsModel extends ChangeNotifier {
 // Add cards to the database
   Future addCard(accountNumber, cardNumber, accountName) async {
     String _url = "http://192.168.18.12/personalbanking/addaccount.php";
-    // await http.post(_url, body: {
-    //   // "accountName": accountName,
-    //   "accountNumber": accountNumber.toString(),
-    //   "cardNumber": cardNumber.toString(),
-    //   "accountName": accountName.toString(),
-    // });
-    // getCards();
 
     try {
       await http.post(_url, body: {
@@ -51,7 +45,7 @@ class AccountsModel extends ChangeNotifier {
         "cardNumber": cardNumber.toString(),
         "accountName": accountName.toString(),
       });
-      return getCards();
+      // return getCards();
     } catch (e) {
       print(e);
     }
@@ -151,4 +145,6 @@ class User {
       this.customerID,
       this.customerName,
       this.customerPhone});
+
+  
 }

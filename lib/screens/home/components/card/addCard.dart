@@ -1,5 +1,6 @@
 import 'package:bank_ui/constants/colors.dart';
 import 'package:bank_ui/models/accountsModel.dart';
+import 'package:bank_ui/screens/home/home.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -242,6 +243,21 @@ class _AddNewCardState extends State<AddNewCard> {
                                   int.parse(accountNumberController.text),
                                   int.parse(cardNumberController.text),
                                   accountNameController.text);
+
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              pageBuilder: (
+                                context,
+                                animation,
+                                secondaryAnimation,
+                              ) =>
+                                  HomePage(),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                return child;
+                              },
+                            ),
+                          );
                         }
                       },
                     ),
