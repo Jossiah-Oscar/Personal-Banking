@@ -16,31 +16,45 @@ class AccountsModel extends ChangeNotifier {
     String _url = "http://192.168.18.12/personalbanking/index.php";
     await http.get(_url).then((value) {
       List<dynamic> accountsList = jsonDecode(value.body) as List;
-      accountsList.forEach((element) {
-        accounts.add(
-          new CardModel(
-            int.tryParse(
-              element["account_number"],
+      accountsList.forEach(
+        (element) {
+          accounts.add(
+            new CardModel(
+              int.tryParse(
+                element["account_number"],
+              ),
+              element["account_name"],
             ),
-            element["account_name"],
-          ),
-        );
-      });
+          );
+        },
+      );
 
-      print(jsonDecode(value.body)[0][0]);
       notifyListeners();
     });
   }
 
 // Add cards to the database
-  Future addCard(accountNumber, cardNumber) async {
-    String _url = "http://192.168.8.100/personalbanking/addaccount.php";
-    await http.post(_url, body: {
-      // "accountName": accountName,
-      "accountNumber": accountNumber.toString(),
-      "cardNumber": cardNumber.toString(),
-    });
+  Future addCard(accountNumber, cardNumber, accountName) async {
+    String _url = "http://192.168.18.12/personalbanking/addaccount.php";
+    // await http.post(_url, body: {
+    //   // "accountName": accountName,
+    //   "accountNumber": accountNumber.toString(),
+    //   "cardNumber": cardNumber.toString(),
+    //   "accountName": accountName.toString(),
+    // });
+    // getCards();
 
+    try {
+      await http.post(_url, body: {
+        // "accountName": accountName,
+        "accountNumber": accountNumber.toString(),
+        "cardNumber": cardNumber.toString(),
+        "accountName": accountName.toString(),
+      });
+      return getCards();
+    } catch (e) {
+      print(e);
+    }
     notifyListeners();
   }
 
@@ -124,4 +138,17 @@ class Accounts {
       balance: json["balance"],
     );
   }
+}
+
+class User {
+  String customerID;
+  String customerName;
+  String customerPhone;
+  String customerEmail;
+
+  User(
+      {this.customerEmail,
+      this.customerID,
+      this.customerName,
+      this.customerPhone});
 }

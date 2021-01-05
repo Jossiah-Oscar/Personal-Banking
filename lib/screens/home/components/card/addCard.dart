@@ -13,6 +13,7 @@ class AddNewCard extends StatefulWidget {
 class _AddNewCardState extends State<AddNewCard> {
   final accountNumberController = new TextEditingController();
   final cardNumberController = new TextEditingController();
+  final accountNameController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -136,6 +137,7 @@ class _AddNewCardState extends State<AddNewCard> {
                   padding:
                       EdgeInsets.only(left: 25, right: 25, top: 30, bottom: 10),
                   child: TextField(
+                    controller: accountNameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Card Holder Name',
@@ -223,11 +225,23 @@ class _AddNewCardState extends State<AddNewCard> {
                               content: Text("Please enter your Card Number"),
                             ),
                           );
+                        } else if (accountNameController.text.isEmpty) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text(
+                                "Account Name",
+                              ),
+                              content: Text("Please enter your Card Number"),
+                            ),
+                          );
                         } else {}
                         {
                           Provider.of<AccountsModel>(context, listen: false)
-                              .addCard(int.parse(accountNumberController.text),
-                                  int.parse(cardNumberController.text));
+                              .addCard(
+                                  int.parse(accountNumberController.text),
+                                  int.parse(cardNumberController.text),
+                                  accountNameController.text);
                         }
                       },
                     ),

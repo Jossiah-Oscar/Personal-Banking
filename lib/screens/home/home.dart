@@ -76,27 +76,25 @@ class _HomePageState extends State<HomePage> {
           children: [
             Icon(Icons.card_membership_sharp),
             Icon(Icons.card_membership_sharp),
-            GestureDetector(
-              onTap: () => Navigator.of(context).push(
-                PageRouteBuilder(
-                  pageBuilder: (
-                    context,
-                    animation,
-                    secondaryAnimation,
-                  ) =>
-                      AddNewCard(),
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return child;
-                  },
-                ),
-              ),
-              child: IconButton(
-                icon: Icon(
-                  Icons.add,
-                ),
-                tooltip: "Add Card",
-              ),
+            FloatingActionButton(
+              backgroundColor: Colors.pink,
+              child: Icon(Icons.add),
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (
+                      context,
+                      animation,
+                      secondaryAnimation,
+                    ) =>
+                        AddNewCard(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return child;
+                    },
+                  ),
+                );
+              },
             ),
             Icon(Icons.card_membership_sharp),
             Icon(Icons.card_membership_sharp),
