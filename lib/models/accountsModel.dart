@@ -102,6 +102,17 @@ class AccountsModel extends ChangeNotifier {
   Future sendpasswordresetEmail(String email) async {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
   }
+
+  // Future signInAnon() async {
+  //   try {
+  //     // result = await _firebaseAuth.signInAnonymously();
+  //     // User user = result.user;
+  //     return user;
+  //   } catch (e) {
+  //     print(e.toString());
+  //     return null;
+  //   }
+  // }
 }
 
 class CardModel {
@@ -145,6 +156,4 @@ class User {
       this.customerID,
       this.customerName,
       this.customerPhone});
-
-  
 }
