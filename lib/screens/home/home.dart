@@ -11,6 +11,48 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isCollapsed = true;
+
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(
+      () {
+        _selectedIndex = index;
+        if (_selectedIndex == 1) {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+              ) =>
+                  AddNewCard(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return child;
+              },
+            ),
+          );
+        } else if (_selectedIndex == 0) {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+              ) =>
+                  HomePage(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return child;
+              },
+            ),
+          );
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,23 +77,6 @@ class _HomePageState extends State<HomePage> {
                   child: Stack(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                          top: 20,
-                          left: 20,
-                        ),
-                        child: Text("Good Morning"),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 60,
-                          left: 20,
-                        ),
-                        child: Text(
-                          "Rowland Benard Martin",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      Padding(
                         padding: const EdgeInsets.only(top: 180),
                         child: CardList(),
                       ),
@@ -67,39 +92,24 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 50,
-        width: 50,
-        color: button,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(Icons.card_membership_sharp),
-            Icon(Icons.card_membership_sharp),
-            FloatingActionButton(
-              backgroundColor: Colors.pink,
-              child: Icon(Icons.add),
-              onPressed: () {
-                Navigator.of(context).push(
-                  PageRouteBuilder(
-                    pageBuilder: (
-                      context,
-                      animation,
-                      secondaryAnimation,
-                    ) =>
-                        AddNewCard(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return child;
-                    },
-                  ),
-                );
-              },
-            ),
-            Icon(Icons.card_membership_sharp),
-            Icon(Icons.card_membership_sharp),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Add Card',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'School',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }

@@ -34,6 +34,11 @@ class AccountsModel extends ChangeNotifier {
     });
   }
 
+  void _onItemTapped(int index) {
+    int _selectedIndex = index;
+    print(index);
+  }
+
 // Add cards to the database
   Future addCard(accountNumber, cardNumber, accountName) async {
     String _url = "http://192.168.18.12/personalbanking/addaccount.php";
@@ -144,6 +149,8 @@ class Accounts {
     );
   }
 }
+
+//Unused User Class
 
 class User {
   String customerID;
