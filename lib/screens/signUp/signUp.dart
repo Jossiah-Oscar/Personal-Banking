@@ -1,4 +1,5 @@
 import 'package:bank_ui/models/accountsModel.dart';
+import 'package:bank_ui/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,8 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController accountNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +43,7 @@ class _SignUpState extends State<SignUp> {
                     top: 40,
                   ),
                   child: TextField(
-                    // controller: cardNumberController,
+                    controller: accountNameController,
                     decoration: InputDecoration(
                       border: UnderlineInputBorder(),
                       labelText: 'Name',
@@ -98,11 +101,9 @@ class _SignUpState extends State<SignUp> {
                           backgroundColor: Colors.pink,
                           child: Icon(Icons.trending_flat),
                           onPressed: () {
-                            Provider.of<AccountsModel>(context, listen: false)
-                                .signUp(
-                              emailController.text,
-                              passwordController.text,
-                            );
+                            Provider.of<AuthService>(context, listen: false)
+                                .signUp(emailController.text,
+                                    passwordController.text, context);
                           },
                         ),
                       ),

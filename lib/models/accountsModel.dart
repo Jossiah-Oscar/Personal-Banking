@@ -2,7 +2,9 @@ import 'dart:convert';
 
 // import 'dart:html';
 
+import 'package:bank_ui/screens/home/components/card/addCard.dart';
 import 'package:bank_ui/screens/home/home.dart';
+import 'package:bank_ui/screens/signUp/logIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -56,68 +58,6 @@ class AccountsModel extends ChangeNotifier {
     }
     notifyListeners();
   }
-
-//Log in wiht Email and Password Firebase.
-  Future logIn(String email, String password, context) async {
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
-
-      return Navigator.of(context).push(
-        PageRouteBuilder(
-          pageBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
-          ) =>
-              HomePage(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return child;
-          },
-        ),
-      );
-    } on FirebaseAuthException catch (e) {
-      // ignore: unrelated_type_equality_checks
-
-      print(e);
-    }
-    // print(FirebaseAuthException);
-    notifyListeners();
-  }
-
-//Signup with Email and Password Firebase
-  Future signUp(String email, String password) async {
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      return "Signed Up";
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        return "The password provided is too weak.";
-      } else if (e.code == 'email-already-in-use') {
-        return "The account already exists for that email.";
-      } else {
-        return "Something Went Wrong.";
-      }
-    } catch (e) {}
-    print(FirebaseAuthException);
-    notifyListeners();
-  }
-
-  Future sendpasswordresetEmail(String email) async {
-    await _firebaseAuth.sendPasswordResetEmail(email: email);
-  }
-
-  // Future signInAnon() async {
-  //   try {
-  //     // result = await _firebaseAuth.signInAnonymously();
-  //     // User user = result.user;
-  //     return user;
-  //   } catch (e) {
-  //     print(e.toString());
-  //     return null;
-  //   }
-  // }
 }
 
 class CardModel {
@@ -139,28 +79,4 @@ class Accounts {
 
   Accounts(
       {this.accountName, this.accountNumber, this.balance, this.cardNumber});
-
-  factory Accounts.fromJson(Map<String, dynamic> json) {
-    return Accounts(
-      accountNumber: json["account_number"],
-      accountName: json["account_name"],
-      cardNumber: json["card_number"],
-      balance: json["balance"],
-    );
-  }
-}
-
-//Unused User Class
-
-class User {
-  String customerID;
-  String customerName;
-  String customerPhone;
-  String customerEmail;
-
-  User(
-      {this.customerEmail,
-      this.customerID,
-      this.customerName,
-      this.customerPhone});
 }

@@ -1,6 +1,7 @@
 import 'package:bank_ui/constants/colors.dart';
 import 'package:bank_ui/models/accountsModel.dart';
 import 'package:bank_ui/screens/home/home.dart';
+import 'package:bank_ui/services/database.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,8 @@ class _AddNewCardState extends State<AddNewCard> {
   final accountNumberController = new TextEditingController();
   final cardNumberController = new TextEditingController();
   final accountNameController = new TextEditingController();
+  final exdateController = new TextEditingController();
+  final cvvController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +178,7 @@ class _AddNewCardState extends State<AddNewCard> {
                     children: [
                       Expanded(
                         child: TextField(
-                          controller: cardNumberController,
+                          controller: exdateController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Expiration Date',
@@ -186,7 +189,7 @@ class _AddNewCardState extends State<AddNewCard> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: TextField(
-                            controller: cardNumberController,
+                            controller: cvvController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'CVV',
@@ -238,26 +241,29 @@ class _AddNewCardState extends State<AddNewCard> {
                           );
                         } else {}
                         {
-                          Provider.of<AccountsModel>(context, listen: false)
-                              .addCard(
-                                  int.parse(accountNumberController.text),
-                                  int.parse(cardNumberController.text),
-                                  accountNameController.text);
-
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                              pageBuilder: (
-                                context,
-                                animation,
-                                secondaryAnimation,
-                              ) =>
-                                  HomePage(),
-                              transitionsBuilder: (context, animation,
-                                  secondaryAnimation, child) {
-                                return child;
-                              },
-                            ),
+                          Provider.of<DatabaseService>(context, listen: false)
+                              .addAccounts(
+                            accountNameController.text,
+                            int.parse(accountNumberController.text),
+                            int.parse(cardNumberController.text),
+                            int.parse(exdateController.text),
+                            int.parse(cvvController.text),
                           );
+
+                          // Navigator.of(context).push(
+                          //   PageRouteBuilder(
+                          //     pageBuilder: (
+                          //       context,
+                          //       animation,
+                          //       secondaryAnimation,
+                          //     ) =>
+                          //         HomePage(),
+                          //     transitionsBuilder: (context, animation,
+                          //         secondaryAnimation, child) {
+                          //       return child;
+                          //     },
+                          //   ),
+                          // );
                         }
                       },
                     ),

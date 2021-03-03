@@ -1,6 +1,7 @@
 import 'package:bank_ui/models/accountsModel.dart';
 import 'package:bank_ui/screens/signUp/forgotPassword.dart';
 import 'package:bank_ui/screens/signUp/signUp.dart';
+import 'package:bank_ui/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -93,9 +94,8 @@ class _LogInState extends State<LogIn> {
                             backgroundColor: Colors.pink,
                             child: Icon(Icons.trending_flat),
                             onPressed: () {
-                              Provider.of<AccountsModel>(context, listen: false)
-                                  .logIn(emailController.text,
-                                      passwordController.text, context);
+                              Provider.of<AuthService>(context, listen: false)
+                                  .signInAnon();
                             },
                           ),
                         ),
