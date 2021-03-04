@@ -2,20 +2,17 @@ import 'dart:convert';
 
 // import 'dart:html';
 
-import 'package:bank_ui/screens/home/components/card/addCard.dart';
-import 'package:bank_ui/screens/home/home.dart';
-import 'package:bank_ui/screens/signUp/logIn.dart';
+// ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AccountsModel extends ChangeNotifier {
   final List<CardModel> accounts = [];
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
 //Display cards from the database
   Future getCards() async {
-    String _url = "http://192.168.18.12/personalbanking/index.php";
+    var _url = Uri.http("http://192.168.18.12", "/personalbanking/index.php");
     await http.get(_url).then((value) {
       List<dynamic> accountsList = jsonDecode(value.body) as List;
       accounts.clear();
@@ -36,14 +33,17 @@ class AccountsModel extends ChangeNotifier {
     });
   }
 
+  // ignore: unused_element
   void _onItemTapped(int index) {
+    // ignore: unused_local_variable
     int _selectedIndex = index;
     print(index);
   }
 
 // Add cards to the database
   Future addCard(accountNumber, cardNumber, accountName) async {
-    String _url = "http://192.168.18.12/personalbanking/addaccount.php";
+    var _url =
+        Uri.http("http://192.168.18.12", "/personalbanking/addaccount.php");
 
     try {
       await http.post(_url, body: {

@@ -1,10 +1,7 @@
-import 'package:bank_ui/models/accountsModel.dart';
 import 'package:bank_ui/models/user.dart';
 import 'package:bank_ui/screens/home/components/card/addCard.dart';
-import 'package:bank_ui/screens/signUp/logIn.dart';
 import 'package:bank_ui/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 
 class AuthService extends ChangeNotifier {
@@ -17,7 +14,9 @@ class AuthService extends ChangeNotifier {
 
 // auth change stream
   Stream<FirebaseUser> get user {
-    return _auth.authStateChanges().map(_userFromFirebaseUser);
+    return _auth.authStateChanges().map(
+          _userFromFirebaseUser,
+        );
   }
 
 //Log in with Email and Password Firebase.
@@ -33,7 +32,6 @@ class AuthService extends ChangeNotifier {
       print(e);
     }
     // print(FirebaseAuthException);
-    notifyListeners();
   }
 
 //SignUp with Email and Password Firebase
@@ -46,8 +44,7 @@ class AuthService extends ChangeNotifier {
       User user = result.user;
 
       //create a new document for each new registered user
-      await DatabaseService(uid: user.uid)
-          .updateUserData([], "Rowland Benard Martin");
+      await DatabaseService(uid: user.uid).updateUserData([{}], "");
 
       //Navigate to user adding a new card
       Navigator.of(context).push(
@@ -68,7 +65,6 @@ class AuthService extends ChangeNotifier {
     } catch (e) {
       print(e.toString());
     }
-    notifyListeners();
   }
 
 //Forgot password

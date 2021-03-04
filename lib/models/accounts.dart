@@ -1,11 +1,24 @@
-import 'package:bank_ui/models/accountsModel.dart';
-import 'package:flutter/material.dart';
-
 class Account {
   String accountName;
-  List<String> accounts;
+  List<Card> accounts;
 
-  Account({this.accountName, this.accounts});
+  Account({
+    this.accountName,
+    this.accounts,
+  });
 }
 
-
+class Card {
+  String name;
+  int accountNumber;
+  int cardNumber;
+  int expDtae;
+  int cvv;
+  Card({
+    this.accountNumber,
+    this.cardNumber,
+    this.cvv,
+    this.expDtae,
+    this.name,
+  });
+}

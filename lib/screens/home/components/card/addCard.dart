@@ -1,8 +1,6 @@
 import 'package:bank_ui/constants/colors.dart';
-import 'package:bank_ui/models/accountsModel.dart';
-import 'package:bank_ui/screens/home/home.dart';
+import 'package:bank_ui/models/user.dart';
 import 'package:bank_ui/services/database.dart';
-// import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,6 +19,7 @@ class _AddNewCardState extends State<AddNewCard> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<FirebaseUser>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -205,7 +204,7 @@ class _AddNewCardState extends State<AddNewCard> {
                   child: ButtonTheme(
                     minWidth: 200,
                     height: 50,
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       child: Text('Add'),
                       onPressed: () {
                         if (accountNumberController.text.isEmpty) {
@@ -239,8 +238,7 @@ class _AddNewCardState extends State<AddNewCard> {
                               content: Text("Please enter your Card Number"),
                             ),
                           );
-                        } else {}
-                        {
+                        } else {
                           Provider.of<DatabaseService>(context, listen: false)
                               .addAccounts(
                             accountNameController.text,
@@ -248,6 +246,7 @@ class _AddNewCardState extends State<AddNewCard> {
                             int.parse(cardNumberController.text),
                             int.parse(exdateController.text),
                             int.parse(cvvController.text),
+                            user.uid.toString(),
                           );
 
                           // Navigator.of(context).push(
@@ -268,6 +267,48 @@ class _AddNewCardState extends State<AddNewCard> {
                       },
                     ),
                   ),
+                ),
+
+                ElevatedButton(
+                  child: Text('Update'),
+                  onPressed: () {
+                    Provider.of<DatabaseService>(context, listen: false)
+                        .addMoreAccounts(
+                      accountNameController.text,
+                      int.parse(accountNumberController.text),
+                      int.parse(cardNumberController.text),
+                      int.parse(exdateController.text),
+                      int.parse(cvvController.text),
+                      user.uid.toString(),
+                    );
+                  },
+                ),
+                Row(
+                  children: [
+                    ElevatedButton(
+                      child: Text('Document Check'),
+                      onPressed: () {
+                        Provider.of<DatabaseService>(context, listen: false)
+                            .docSnapShot();
+                      },
+                    ),
+                    ElevatedButton(
+                      child: Text('print card'),
+                      onPressed: () {
+                        Provider.of<DatabaseService>(context, listen: false)
+                            .docCheck(
+                          user.uid.toString(),
+                        );
+                      },
+                    ),
+                    ElevatedButton(
+                      child: Text('card check'),
+                      onPressed: () {
+                        Provider.of<DatabaseService>(context, listen: false)
+                            .cardCheck();
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),

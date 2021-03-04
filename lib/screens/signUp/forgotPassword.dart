@@ -1,4 +1,3 @@
-import 'package:bank_ui/models/accountsModel.dart';
 import 'package:bank_ui/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -59,7 +58,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   top: 20,
                   left: 130,
                 ),
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: () {
                     Provider.of<AuthService>(context, listen: false)
                         .sendpasswordresetEmail(emailController.text);

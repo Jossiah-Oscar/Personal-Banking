@@ -1,0 +1,23 @@
+[
+  {
+    "Expiration Date": 123445,
+    "CVV": 12321,
+    "Number": 1234567890,
+    "Card Number": 1234567890,
+    "Name": "Jossiah Kibona"
+  },
+  {
+    "Expiration Date": 123445,
+    "CVV": 123212,
+    "Number": 1234567890,
+    "Card Number": 1234567890,
+    "Name": "Jossiah Kibona"
+  },
+  {
+    "Expiration Date": 1234452,
+    "CVV": 123212,
+    "Number": 1234567890,
+    "Card Number": 1234567890,
+    "Name": "Jossiah Kibona"
+  }
+]

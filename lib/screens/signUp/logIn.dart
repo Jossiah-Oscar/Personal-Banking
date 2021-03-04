@@ -1,4 +1,3 @@
-import 'package:bank_ui/models/accountsModel.dart';
 import 'package:bank_ui/screens/signUp/forgotPassword.dart';
 import 'package:bank_ui/screens/signUp/signUp.dart';
 import 'package:bank_ui/services/authentication.dart';

@@ -1,7 +1,6 @@
 import 'package:bank_ui/models/accountsModel.dart';
+import 'package:bank_ui/models/user.dart';
 import 'package:bank_ui/screens/home/components/card/addCard.dart';
-import 'package:bank_ui/screens/home/home.dart';
-import 'package:bank_ui/screens/signUp/logIn.dart';
 import 'package:bank_ui/screens/signUp/signUp.dart';
 import 'package:bank_ui/services/authentication.dart';
 import 'package:bank_ui/services/database.dart';
@@ -22,8 +21,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AccountsModel()),
-        ChangeNotifierProvider(create: (context) => AuthService()),
         ChangeNotifierProvider(create: (context) => DatabaseService()),
+        ChangeNotifierProvider(create: (context) => AuthService()),
+        StreamProvider<FirebaseUser>.value(
+          value: AuthService().user,
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

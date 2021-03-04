@@ -1,10 +1,5 @@
-import 'package:bank_ui/models/accountsModel.dart';
-import 'package:bank_ui/screens/home/components/card/addCard.dart';
 import 'package:bank_ui/screens/home/components/card/cardlist.dart';
-import 'package:bank_ui/screens/home/components/service/services.dart';
-import 'package:bank_ui/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override

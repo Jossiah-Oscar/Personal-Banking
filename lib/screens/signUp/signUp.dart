@@ -1,4 +1,3 @@
-import 'package:bank_ui/models/accountsModel.dart';
 import 'package:bank_ui/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

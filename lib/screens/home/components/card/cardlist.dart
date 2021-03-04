@@ -1,5 +1,6 @@
 import 'package:bank_ui/constants/colors.dart';
 import 'package:bank_ui/models/accountsModel.dart';
+// ignore: unused_import
 import 'package:bank_ui/screens/home/components/card/cardview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

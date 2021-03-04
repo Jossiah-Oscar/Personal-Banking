@@ -155,6 +155,7 @@ class CardView extends StatelessWidget {
                             Icons.ac_unit,
                             size: 20,
                           ),
+                          onPressed: () {},
                         ),
                         SizedBox(
                           width: 10,
@@ -163,6 +164,7 @@ class CardView extends StatelessWidget {
                           style: ButtonStyle(),
                           label: Text("Erase"),
                           icon: Icon(Icons.delete),
+                          onPressed: () {},
                         ),
                       ],
                     ),
