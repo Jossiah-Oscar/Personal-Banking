@@ -1,276 +1,310 @@
 import 'package:bank_ui/constants/colors.dart';
+import 'package:bank_ui/models/accounts.dart';
 import 'package:flutter/material.dart';
 
-class CardView extends StatelessWidget {
+class CardView extends StatefulWidget {
+  final Account account;
+  const CardView({Key key, @required this.account}) : super(key: key);
+  @override
+  _CardViewState createState() => _CardViewState();
+}
+
+class _CardViewState extends State<CardView> {
+  bool isSwitchedOnline = false;
+  bool isSwitchedATM = false;
+  bool isSwitchedLess = false;
+  bool isSwitchedBlock = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Center(
             child: Text(
-          "Card",
+          " My Card",
           style: TextStyle(),
         )),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(70),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Center(
+              child: Container(
+                margin: EdgeInsets.only(right: 10),
+                height: 200,
+                width: 360,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  color: backgroundDark,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 2.0,
-                    spreadRadius: 0.0,
-                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
-                  )
-                ],
+                child: Stack(
+                  children: <Widget>[
+                    Positioned(
+                      left: 30,
+                      top: 90,
+                      child: Text(
+                        widget.account.number.toString(),
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 30,
+                      top: 145,
+                      child: Text(
+                        'Card Holder',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 30,
+                      top: 165,
+                      child: Text(
+                        widget.account.name,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 225,
+                      top: 145,
+                      child: Text(
+                        'Expires',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 225,
+                      top: 165,
+                      child: Text(
+                        '11/22',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 275,
+                      top: 0,
+                      child: Container(
+                        width: 70,
+                        height: 70,
+                        child: Image.asset("assets/Nmb_logo.jpg"),
+                      ),
+                    ),
+                    Positioned(
+                      left: 275,
+                      top: 135,
+                      child: Container(
+                        width: 65,
+                        height: 65,
+                        child: Image.asset("assets/mastercard.png"),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              height: 360,
-              width: 415,
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 80,
-                    left: 20,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.04,
+                width: MediaQuery.of(context).size.width,
+                // color: Colors.lightBlue,
+                child: Text(
+                  "Favourite Contacts",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              decoration: BoxDecoration(
+                  // color: Colors.lightBlue,
+
+                  ),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      right: 10,
+                      left: 10,
+                      bottom: 4,
+                    ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 10),
-                      height: 200,
-                      width: 360,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width * 0.17,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(18),
-                        color: backgroundDark,
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.blue,
-                            blurRadius: 3.0,
-                            spreadRadius: 3.0,
-                            offset: Offset(
-                                2.0, 2.0), // shadow direction: bottom right
-                          )
-                        ],
-                      ),
-                      child: Stack(
-                        children: <Widget>[
-                          Positioned(
-                            left: 30,
-                            top: 90,
-                            child: Text(
-                              '****  ****  ****  6958',
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 30,
-                            top: 145,
-                            child: Text(
-                              'Card Holder',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 30,
-                            top: 165,
-                            child: Text(
-                              'Rowland Benard Martin',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 225,
-                            top: 145,
-                            child: Text(
-                              'Expires',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 225,
-                            top: 165,
-                            child: Text(
-                              '11/22',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 275,
-                            top: 0,
-                            child: Container(
-                              width: 70,
-                              height: 70,
-                              child: Image.asset("assets/Nmb_logo.jpg"),
-                            ),
-                          ),
-                          Positioned(
-                            left: 275,
-                            top: 135,
-                            child: Container(
-                              width: 65,
-                              height: 65,
-                              child: Image.asset("assets/mastercard.png"),
-                            ),
+                            color: Colors.grey,
+                            offset: Offset(0.0, 3.0), //(x,y)
+                            blurRadius: 6.0,
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 290,
-                    left: 20,
-                    child: Row(
-                      children: [
-                        Text("Your card is active"),
-                        SizedBox(
-                          width: 32,
-                        ),
-                        OutlinedButton.icon(
-                          style: ButtonStyle(),
-                          label: Text("Freeze"),
-                          icon: Icon(
-                            Icons.ac_unit,
-                            size: 20,
-                          ),
-                          onPressed: () {},
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        OutlinedButton.icon(
-                          style: ButtonStyle(),
-                          label: Text("Erase"),
-                          icon: Icon(Icons.delete),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 50,
-                left: 30,
-              ),
-              child: Text(
-                "Card Settings",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    height: 130,
-                    width: 100,
-                    color: Colors.blueAccent,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          left: 10,
-                          top: 50,
-                          child: Icon(
-                            Icons.rss_feed,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.person,
                             size: 30,
                           ),
-                        ),
-                        Positioned(
-                          top: 90,
-                          left: 10,
-                          child: Text(
-                            "Contactless \nPayment",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
+                          Text("Rowland"),
+                          Text("Martin"),
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 130,
-                    width: 100,
-                    color: Colors.blueAccent,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          left: 10,
-                          top: 50,
-                          child: Icon(
-                            Icons.language,
-                            size: 30,
-                          ),
-                        ),
-                        Positioned(
-                          top: 90,
-                          left: 10,
-                          child: Text(
-                            "Online \nPayments",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 130,
-                    width: 100,
-                    color: Colors.blueAccent,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          left: 10,
-                          top: 50,
-                          child: Icon(
-                            Icons.credit_card,
-                            size: 30,
-                          ),
-                        ),
-                        Positioned(
-                          top: 90,
-                          left: 10,
-                          child: Text(
-                            "ATM \nWithdrawals",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            ExpansionTile(
+              backgroundColor: Colors.white,
+              title: Text(
+                " Activities",
+                style: TextStyle(fontSize: 20),
+              ),
+              children: [
+                ListTile(
+                  tileColor: Colors.white,
+                  leading: Icon(Icons.person),
+                  title: Text(
+                    'Rowland Martin',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  subtitle: Text(
+                    "Payment Sent",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  trailing: Text(
+                    "TSH 20,000,000",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+                ListTile(
+                  tileColor: Colors.white,
+                  leading: Icon(Icons.person),
+                  title: Text(
+                    'Rowland Martin',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  subtitle: Text(
+                    "Payment Sent",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  trailing: Text(
+                    "TSH 20,000,000",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+            //Card Setting
+            ExpansionTile(
+              title: Text(
+                " Card Settings",
+                style: TextStyle(fontSize: 20),
+              ),
+              children: [
+                ListTile(
+                  title: Text('Online Payment'),
+                  trailing: Switch(
+                    value: isSwitchedOnline,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitchedOnline = value;
+                        print(isSwitchedOnline);
+                      });
+                    },
+                    activeTrackColor: Colors.lightGreenAccent,
+                    activeColor: Colors.green,
+                  ),
+                ),
+                ListTile(
+                  title: Text('ATM Withdraw'),
+                  trailing: Switch(
+                    value: isSwitchedATM,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitchedATM = value;
+                        print(isSwitchedATM);
+                      });
+                    },
+                    activeTrackColor: Colors.lightGreenAccent,
+                    activeColor: Colors.green,
+                  ),
+                ),
+                ListTile(
+                  title: Text('Connectionless Payment'),
+                  trailing: Switch(
+                    value: isSwitchedLess,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitchedLess = value;
+                        print(isSwitchedLess);
+                      });
+                    },
+                    activeTrackColor: Colors.lightGreenAccent,
+                    activeColor: Colors.green,
+                  ),
+                ),
+                ListTile(
+                  title: Text('Block Card'),
+                  trailing: Switch(
+                    value: isSwitchedBlock,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitchedBlock = value;
+                        print(isSwitchedBlock);
+                      });
+                    },
+                    activeTrackColor: Colors.lightGreenAccent,
+                    activeColor: Colors.green,
+                  ),
+                ),
+              ],
+            ),
+            //Activities
           ],
         ),
       ),

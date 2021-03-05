@@ -2,6 +2,7 @@ import 'package:bank_ui/constants/colors.dart';
 import 'package:bank_ui/models/accountsModel.dart';
 // ignore: unused_import
 import 'package:bank_ui/screens/home/components/card/cardview.dart';
+import 'package:bank_ui/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,9 +13,10 @@ class CardList extends StatefulWidget {
 
 class _CardListState extends State<CardList> {
   final List<CardListTest> cardListTest = <CardListTest>[];
+  // String uid;
   @override
   void initState() {
-    Provider.of<AccountsModel>(context, listen: false).getCards();
+    Provider.of<DatabaseService>(context, listen: false).docCheck();
     super.initState();
   }
 
@@ -22,15 +24,29 @@ class _CardListState extends State<CardList> {
   Widget build(BuildContext context) {
     return Container(
       height: 200,
-      child: Consumer<AccountsModel>(
+      child: Consumer<DatabaseService>(
         builder: (context, model, child) {
           return ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.only(left: 16, right: 6),
-            itemCount: model.accounts.length,
+            itemCount: model.cardList.length,
             itemBuilder: (context, index) {
-              return CardListTest(model.accounts[index].accountNumber,
-                  model.accounts[index].accountName);
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return new CardView(
+                          account: model.cardList[index],
+                        );
+                      },
+                    ),
+                  );
+                },
+                child: CardListTest(
+                    model.cardList[index].number, model.cardList[index].name),
+              );
               // Text(model.accounts[index].accountNumber.toString()) ;
             },
           );

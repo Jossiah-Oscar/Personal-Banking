@@ -1,3 +1,4 @@
+import 'package:bank_ui/constants/colors.dart';
 import 'package:bank_ui/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,103 +15,170 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
-        },
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 0,
-                    top: 105,
-                  ),
-                  child: Text(
-                    "Create\nAccount",
-                    style: TextStyle(fontSize: 45),
-                  ),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: Scaffold(
+        body: Container(
+          height: MediaQuery.of(context).size.height * 1,
+          width: MediaQuery.of(context).size.height,
+          color: Colors.white,
+          child: Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 1,
+                width: MediaQuery.of(context).size.height,
+                child: Image.asset(
+                  "assets/background.png",
+                  fit: BoxFit.cover,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 40,
-                    top: 40,
+              ),
+              Center(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.65,
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  decoration: BoxDecoration(
+                    color: background,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 3.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ],
                   ),
-                  child: TextField(
-                    controller: accountNameController,
-                    decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Name',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 40,
-                    top: 20,
-                  ),
-                  child: TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Email',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 40,
-                    right: 40,
-                    top: 20,
-                  ),
-                  child: TextField(
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Password',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 50,
-                    left: 40,
-                  ),
-                  child: Row(
+                  child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(),
+                        padding: const EdgeInsets.only(top: 25),
                         child: Text(
-                          "Sign Up",
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
+                          "Create new account",
+                          style: TextStyle(color: backgroundMid, fontSize: 25),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 195,
-                        ),
-                        child: FloatingActionButton(
-                          backgroundColor: Colors.pink,
-                          child: Icon(Icons.trending_flat),
-                          onPressed: () {
-                            Provider.of<AuthService>(context, listen: false)
-                                .signUp(emailController.text,
-                                    passwordController.text, context);
-                          },
+                      Form(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                                left: 30,
+                                right: 30,
+                              ),
+                              child: TextFormField(
+                                controller: accountNameController,
+                                decoration: InputDecoration(
+                                  labelText: 'User Name',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.bold),
+                                  hintText: 'Enter User Name',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                                left: 30,
+                                right: 30,
+                              ),
+                              child: TextFormField(
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                  labelText: 'Email',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.bold),
+                                  hintText: 'Enter Email',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                                left: 30,
+                                right: 30,
+                              ),
+                              child: TextFormField(
+                                controller: passwordController,
+                                decoration: InputDecoration(
+                                  labelText: 'Password',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.bold),
+                                  hintText: 'Enter Password',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                                left: 30,
+                                right: 30,
+                              ),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'Confirm Password',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.bold),
+                                  hintText: 'Confirm',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                                bottom: 10,
+                                left: 30,
+                                right: 30,
+                              ),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'Date of Birth',
+                                  labelStyle:
+                                      TextStyle(fontWeight: FontWeight.bold),
+                                  hintText: '24-01-2021',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 10,
+                              ),
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.06,
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Provider.of<AuthService>(context,
+                                            listen: false)
+                                        .signUp(emailController.text,
+                                            passwordController.text, context);
+                                  },
+                                  child: Text(
+                                    "Register",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Text(
+                                "Cancel",
+                                style: TextStyle(color: backgroundMid),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

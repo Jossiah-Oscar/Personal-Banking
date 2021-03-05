@@ -1,3 +1,4 @@
+import 'package:bank_ui/screens/home/components/card/addCard.dart';
 import 'package:bank_ui/screens/home/components/card/cardlist.dart';
 import 'package:flutter/material.dart';
 
@@ -166,6 +167,35 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: MediaQuery.of(context).size.height * 0.06,
+        color: Colors.lightBlue,
+        child: Row(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (
+                      context,
+                      animation,
+                      secondaryAnimation,
+                    ) =>
+                        UpdateCards(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return child;
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

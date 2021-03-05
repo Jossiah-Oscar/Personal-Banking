@@ -1,6 +1,8 @@
+import 'package:bank_ui/Tests/hometest.dart';
 import 'package:bank_ui/models/accountsModel.dart';
 import 'package:bank_ui/models/user.dart';
 import 'package:bank_ui/screens/home/components/card/addCard.dart';
+import 'package:bank_ui/screens/signUp/logIn.dart';
 import 'package:bank_ui/screens/signUp/signUp.dart';
 import 'package:bank_ui/services/authentication.dart';
 import 'package:bank_ui/services/database.dart';
@@ -32,8 +34,9 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: 'Gilroy',
         ),
-        home: AddNewCard(),
+        home: SignUp(),
       ),
     );
   }

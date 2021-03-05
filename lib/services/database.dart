@@ -124,51 +124,52 @@ class DatabaseService extends ChangeNotifier {
 
   //Check if document Exists
   Future docCheck(
-    String uid,
-  ) async {
-    try {
-      accountCollection.doc(tempUID).get().then(
-        (DocumentSnapshot documentSnapshot) {
-          if (documentSnapshot.exists) {
-            try {
-              List<dynamic> card = documentSnapshot.get(
-                FieldPath(
-                  [
-                    "accounts",
-                  ],
-                ),
+      // String uid,
+      ) async {
+    await accountCollection.doc(tempUID).get().then(
+      (DocumentSnapshot documentSnapshot) {
+        if (documentSnapshot.exists) {
+          try {
+            List<dynamic> card = documentSnapshot.get(
+              FieldPath(
+                [
+                  "accounts",
+                ],
+              ),
+            ) as List;
+            cardList.clear();
+            card.forEach((element) {
+              cardList.add(
+                new Account.fromJson(element),
               );
-              // ignore: todo
-              // TODO Get a list of all cards.
-              card.forEach((element) {
-                card.add(new Account());
-              });
-              print(card);
-            } on StateError catch (e) {
-              print(e);
-            }
-          } else {
-            print(" Document Doesn't Exist");
+            });
+          
+          } on StateError catch (e) {
+            print(e);
           }
-        },
-      );
-    } catch (e) {
-      print(e);
-    }
+        } else {
+          print(" Document Doesn't Exist");
+        }
+      },
+    );
+
+    notifyListeners();
   }
 
-//Account List from snapshot
-  List<Account> _accountListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.docs.map((doc) {
-      return Account(
-        accountName: doc.data()['accountName'] ?? '',
-        accounts: doc.data()[[]] ?? '',
-      );
-    }).toList();
-  }
+  //Generate cards
+
+// //Account List from snapshot
+//   List<Account> _accountListFromSnapshot(QuerySnapshot snapshot) {
+//     return snapshot.docs.map((doc) {
+//       return Account(
+//         accountName: doc.data()['accountName'] ?? '',
+//         accounts: doc.data()[[]] ?? '',
+//       );
+//     }).toList();
+//   }
 
   //Get account collections
-  Stream<List<Account>> get accounts {
-    return accountCollection.snapshots().map((_accountListFromSnapshot));
-  }
+  // Stream<List<Account>> get accounts {
+  //   return accountCollection.snapshots().map((_accountListFromSnapshot));
+  // }
 }
